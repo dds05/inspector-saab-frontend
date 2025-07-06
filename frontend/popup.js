@@ -14,6 +14,29 @@ function main() {
     const statusMessage = document.getElementById('status');
     const iconBar = document.getElementsByClassName('icon-bar')[0];
     const crossIcon = document.getElementsByClassName('cross-icon')[0];    
+    const suggestedPrompts = document.getElementsByClassName('suggestedPrompts')[0];
+    const mostUsedPrompts = [
+        "Make the text red",
+        "Add a scroll to top button",
+        "Hide the footer",
+        "Make all buttons green",
+        "Turn the page dark",
+    ];
+
+    for (let i = 0; i < mostUsedPrompts.length; i++) {
+        const prompText = mostUsedPrompts[i];
+        let prompt = document.createElement('div');
+        prompt.className = 'prompt'
+        prompt.textContent = `${i + 1}. ${prompText}.`;
+        prompt.onclick = () => {
+            descriptionArea.value = `${prompText}`
+            const closeHelpModal = document.getElementById('closeHelpModal');
+            if (closeHelpModal)
+                closeHelpModal.click()
+            applyChangesButton.click()
+        }
+        suggestedPrompts.append(prompt);
+    }
 
     crossIcon.addEventListener("click",  () => {
         const description = document.getElementById("description");
